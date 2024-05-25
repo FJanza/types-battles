@@ -1,33 +1,119 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  background-color: #313131;
+  color: white;
+  font-size: 20px;
+  --green: #00b755;
+  --red: #ca4754;
+  --yellow: #daaf38;
+  --purple: #b438da;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+input {
+  /* z-index: -999; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* pointer-events: none !important; */
+  background-color: #313131;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  display: grid;
+  padding: 32px;
+  justify-content: center;
+  margin-top: 32px;
+  padding: 16px;
+}
+section {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  gap: 4;
+}
+p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px 8px;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+/* tb-word {
+  &.active {
+
+  }
+} */
+
+tb-letter {
+  color: grey;
+  position: relative;
+
+  &.active::before {
+    content: "|";
+    color: var(--yellow);
+    font-size: 20px;
+    position: absolute;
+    left: -65%;
+    animation: 1s blink infinite ease-in-out;
+  }
+
+  &.active.is-last::before {
+    left: 65%;
+  }
+
+  &.correct {
+    color: var(--green);
+  }
+  &.incorrect {
+    color: var(--red);
+  }
+}
+
+h2 {
+  font-weight: 400;
+  opacity: 0.4;
+  margin: 0;
+  font-size: 16px;
+}
+
+h3 {
+  font-weight: 400;
+  margin: 0;
+  font-size: 24px;
+  color: var(--purple);
+}
+
+button {
+  background: transparent;
+  border: 0;
+  margin-top: 32px;
+  opacity: 0.4;
+  padding: 10px;
+  display: inline-block;
+  transition: opacity 0.3s ease-in-out;
+  cursor: pointer;
+  border-radius: 16px;
+  &:hover {
+    background: #444;
+    opacity: 1;
+  }
+}
+
+tb-word {
+  border-bottom: 1px solid transparent;
+  &.marked {
+    border-color: var(--red);
+  }
+}
+
+@keyframes blink {
+  0%,
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0;
   }
 }
