@@ -3,7 +3,8 @@ import {useEffect, useRef, useState} from "react";
 import {WORDS} from "src/utils/constants";
 
 export default function Home() {
-  const INITIAL_TIME = 5;
+  const INITIAL_TIME = 300; //segundos
+  let currentTime = INITIAL_TIME;
 
   const $paragraph = useRef<HTMLParagraphElement>(null);
   const $input = useRef<HTMLInputElement>(null);
@@ -15,12 +16,18 @@ export default function Home() {
     accuracy: string;
   }>();
 
+  let playing: boolean;
   let words: any = [];
 
-  words = WORDS;
+  function initGame() {
+    setGameOverState(false);
+    $input.current!.value = "";
 
-  const [paragraph] = useState<string | TrustedHTML>(
-    words
+    playing = false;
+
+    words = WORDS.toSorted(() => Math.random() - 0.5).slice(0, 32);
+
+    $paragraph.current!.innerHTML = words
       .map((word: string, index: number) => {
         const letters = word.split("");
         return `<tb-word ${index === 0 ? "class=active" : ""}>${letters
@@ -32,28 +39,25 @@ export default function Home() {
           )
           .join("")}</tb-word>`;
       })
-      .join("")
-  );
-
-  function initGame() {
-    setGameOverState(false);
-    let currentTime = INITIAL_TIME;
-
-    const intervalId = setInterval(() => {
-      currentTime--;
-      if ($time.current) {
-        $time.current.textContent = String(currentTime);
-
-        if (currentTime === 0) {
-          clearInterval(intervalId);
-          gameOver();
-        }
-      }
-    }, 1000);
+      .join("");
   }
 
   function initEvents() {
-    //TODO si no hay eventos borrar este metodo
+    document.addEventListener("keydown", () => {
+      $input.current!.focus();
+      if (!playing) {
+        playing = true;
+        const intervalId = setInterval(() => {
+          currentTime--;
+          $time.current!.textContent = String(currentTime);
+
+          if (currentTime === 0) {
+            clearInterval(intervalId);
+            gameOver();
+          }
+        }, 1000);
+      }
+    });
   }
 
   function onKeyDown(event: any) {
@@ -68,6 +72,8 @@ export default function Home() {
 
       const $nextWord = $currentWord!.nextElementSibling;
       const $nextLetter = $nextWord!.querySelector("tb-letter");
+
+      console.log({$nextWord}, {$currentWord});
 
       $currentWord!.classList.remove("active", "marked");
       $currentLetter!.classList.remove("active");
@@ -155,7 +161,9 @@ export default function Home() {
     } else {
       $currentLetter!.classList.add("active", "is-last");
 
-      //TODO si no hay proxima palabra game over
+      const $nextWord = $currentWord!.nextElementSibling;
+
+      if (!$nextWord) gameOver();
     }
   }
 
@@ -174,7 +182,6 @@ export default function Home() {
       totalLetters > 0 ? (correctLetter / totalLetters) * 100 : 0;
 
     const wpm = (correctWords * 60) / INITIAL_TIME;
-    console.log({wpm, accuracy: accuracy.toFixed(2)});
 
     setGameOverData({wpm, accuracy: accuracy.toFixed(2)});
     setGameOverState(true);
@@ -190,26 +197,19 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      {!gameOverState ? (
-        <section>
-          <input
-            autoFocus
-            ref={$input}
-            onKeyDown={onKeyDown}
-            onKeyUp={onKeyUp}
-          />
-          <p dangerouslySetInnerHTML={{__html: paragraph}} ref={$paragraph}></p>
-          <time ref={$time}></time>
-        </section>
-      ) : (
-        <section>
-          <h2>WPM</h2>
-          <h3>{gameOverData?.wpm}</h3>
-          <h2>Accuracy</h2>
-          <h3>{gameOverData?.accuracy}%</h3>
-          <button onClick={() => initGame()}>retry</button>
-        </section>
-      )}
+      <section className={gameOverState ? "hidden" : "flex"}>
+        <input autoFocus ref={$input} onKeyDown={onKeyDown} onKeyUp={onKeyUp} />
+        <p ref={$paragraph}></p>
+        <time ref={$time}></time>
+      </section>
+
+      <section className={!gameOverState ? "hidden" : "flex"}>
+        <h2>WPM</h2>
+        <h3>{gameOverData?.wpm}</h3>
+        <h2>Accuracy</h2>
+        <h3>{gameOverData?.accuracy}%</h3>
+        <button onClick={() => initGame()}>retry</button>
+      </section>
     </main>
   );
 }
