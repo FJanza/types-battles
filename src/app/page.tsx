@@ -3,7 +3,7 @@ import {useEffect, useRef, useState} from "react";
 import {WORDS} from "src/utils/constants";
 
 export default function Home() {
-  const INITIAL_TIME = 300; //segundos
+  const INITIAL_TIME = 300; //segundos //TODO cambiar a que sea un prop de la funcion
   let currentTime = INITIAL_TIME;
 
   const $paragraph = useRef<HTMLParagraphElement>(null);
@@ -25,7 +25,7 @@ export default function Home() {
 
     playing = false;
 
-    words = WORDS.toSorted(() => Math.random() - 0.5).slice(0, 32);
+    words = WORDS.toSorted(() => Math.random() - 0.5).slice(0, 32); //TODO cambiar a que sea un prop de la funcion
 
     $paragraph.current!.innerHTML = words
       .map((word: string, index: number) => {
@@ -71,6 +71,9 @@ export default function Home() {
       event.preventDefault();
 
       const $nextWord = $currentWord!.nextElementSibling;
+
+      if (!$nextWord) return;
+
       const $nextLetter = $nextWord!.querySelector("tb-letter");
 
       console.log({$nextWord}, {$currentWord});
