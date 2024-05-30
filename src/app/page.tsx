@@ -3,7 +3,8 @@ import {useEffect, useRef, useState} from "react";
 import {WORDS} from "src/utils/constants";
 
 export default function Home() {
-  const INITIAL_TIME = 300; //segundos //TODO cambiar a que sea un prop de la funcion
+  const INITIAL_TIME = 30; //segundos //TODO cambiar a que sea un prop de la funcion
+
   let currentTime = INITIAL_TIME;
 
   const $paragraph = useRef<HTMLParagraphElement>(null);
@@ -40,23 +41,24 @@ export default function Home() {
           .join("")}</tb-word>`;
       })
       .join("");
+
+    if (!playing) {
+      playing = true;
+      const intervalId = setInterval(() => {
+        currentTime--;
+        $time.current!.textContent = String(currentTime);
+
+        if (currentTime === 0) {
+          clearInterval(intervalId);
+          gameOver();
+        }
+      }, 1000);
+    }
   }
 
   function initEvents() {
     document.addEventListener("keydown", () => {
       $input.current!.focus();
-      if (!playing) {
-        playing = true;
-        const intervalId = setInterval(() => {
-          currentTime--;
-          $time.current!.textContent = String(currentTime);
-
-          if (currentTime === 0) {
-            clearInterval(intervalId);
-            gameOver();
-          }
-        }, 1000);
-      }
     });
   }
 
@@ -211,7 +213,15 @@ export default function Home() {
         <h3>{gameOverData?.wpm}</h3>
         <h2>Accuracy</h2>
         <h3>{gameOverData?.accuracy}%</h3>
-        <button onClick={() => initGame()}>retry</button>
+        <button
+          onClick={() => {
+            initGame();
+            currentTime = INITIAL_TIME;
+            initEvents();
+          }}
+        >
+          retry
+        </button>
       </section>
     </main>
   );
