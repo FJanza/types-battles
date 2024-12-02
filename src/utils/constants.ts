@@ -173,3 +173,8 @@ export const WORDS = [
   "tell",
   "about",
 ];
+
+export const DEFAULT_GAME_SETTINGS = {
+  timeGame: 60,
+  wordsQuantity: 10,
+};
