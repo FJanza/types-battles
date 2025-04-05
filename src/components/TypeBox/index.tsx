@@ -3,7 +3,7 @@
 import {useRouter} from "next/navigation";
 import React, {useEffect, useRef, useState} from "react";
 
-import {WORDS} from "src/utils/constants";
+import {WORDS_BY_LENGTH} from "src/utils/constants";
 import {DIFFICULTY_SETTINGS} from "src/utils/difficulty";
 import {GameOverData} from "src/models/gameOverData";
 
@@ -38,13 +38,18 @@ const TypeBox = ({
 
     setPlaying(false);
 
-    const filteredWords = WORDS.filter(
-      (word) =>
-        word.length >= settings.wordMinLength &&
-        word.length <= settings.wordMaxLength
-    );
+    const eligibleWords = [];
+    for (
+      let length = settings.wordMinLength;
+      length <= settings.wordMaxLength;
+      length++
+    ) {
+      if (WORDS_BY_LENGTH[length]) {
+        eligibleWords.push(...WORDS_BY_LENGTH[length]);
+      }
+    }
 
-    words = filteredWords
+    words = eligibleWords
       .toSorted(() => Math.random() - 0.5)
       .slice(0, wordCount);
 

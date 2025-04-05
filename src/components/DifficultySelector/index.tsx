@@ -26,7 +26,7 @@ export default function DifficultySelector({
           <div
             key={key}
             className={`p-3 border-2 rounded-md cursor-pointer transition-colors bg-gray-700 hover:bg-gray-600 text-gray-200 flex flex-col justify-between  ${
-              difficulty === key ? "border-fuchsia-700" : "border-gray-600"
+              difficulty === key ? "border-fuchsia-400" : "border-gray-600"
             }`}
             onClick={() => setDifficulty(key as DifficultyLevel)}
           >
