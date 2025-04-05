@@ -1,5 +1,11 @@
 import {LoadingSpinnerProps} from "./types";
 
+/**
+ *
+ * @param text string to be desplayed under the spinner.
+ * @returns
+ */
+
 const LoadingSpinner = ({text}: LoadingSpinnerProps) => {
   return (
     <div className="animate-pulse flex flex-col items-center">
