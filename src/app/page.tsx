@@ -5,6 +5,7 @@ import {useRouter} from "next/navigation";
 import {DifficultyLevel} from "src/models/difficulty";
 import LoadingSpinner from "src/components/LoadingSpinner";
 import DifficultySelector from "src/components/DifficultySelector";
+import Footer from "src/components/Footer";
 
 export default function Home() {
   const [difficulty, setDifficulty] = useState<DifficultyLevel>("normal");
@@ -22,7 +23,7 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center text-gray-100 text-center">
+    <main className="flex flex-col items-center text-gray-100 text-center">
       <h1 className="text-4xl font-bold mb-4 text-fuchsia-400">
         Types Battles
       </h1>
@@ -40,6 +41,8 @@ export default function Home() {
       <button onClick={createGame} disabled={isStarting}>
         {isStarting ? "Starting..." : "Start game"}
       </button>
+
+      <Footer />
     </main>
   );
 }
