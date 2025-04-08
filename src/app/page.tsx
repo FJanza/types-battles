@@ -27,7 +27,9 @@ export default function Home() {
       <h1 className="text-4xl font-bold mb-4 text-fuchsia-400">
         Types Battles
       </h1>
-      <p className="text-lg text-gray-300 mb-4">Prove yourself, youngling.</p>
+      <p className="text-lg text-gray-300 mb-4 opacity-40">
+        Prove yourself, youngling.
+      </p>
 
       {!isStarting ? (
         <DifficultySelector

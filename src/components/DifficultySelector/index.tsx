@@ -18,7 +18,7 @@ export default function DifficultySelector({
 }: DifficultySelectorProps) {
   return (
     <div className="w-full max-w-md p-6 transition-all duration-300">
-      <h2 className="text-xl font-semibold mb-4 text-gray-200">
+      <h2 className="text-xl font-semibold mb-4 text-gray-200 opacity-40">
         Choose Difficulty
       </h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
