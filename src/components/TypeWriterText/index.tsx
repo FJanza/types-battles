@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./TypeWriterText.module.css";
+import styles from "./styles.module.css";
 import {TypewriterTextProps} from "./types";
 
 export default function TypewriterText({
