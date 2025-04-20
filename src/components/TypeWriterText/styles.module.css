@@ -1,0 +1,56 @@
+.typewriterContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.typewriter {
+  font-family: monospace;
+  font-size: 3rem;
+  color: #fafafa;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 0.1em;
+  animation: typing 18s steps(12, end) infinite;
+  position: relative;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.typewriter::after {
+  content: "|";
+  position: absolute;
+  right: -0.35em;
+  color: var(--yellow);
+  font-size: 1em;
+  animation: blink 1s infinite ease-in-out;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  16% {
+    width: 100%;
+  }
+  72% {
+    width: 100%;
+  }
+  89% {
+    width: 0;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes blink {
+  0%,
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0;
+  }
+}

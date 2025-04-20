@@ -1,14 +1,17 @@
 "use client";
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {useRouter} from "next/navigation";
 
 import {DifficultyLevel} from "src/models/difficulty";
 import LoadingSpinner from "src/components/LoadingSpinner";
 import DifficultySelector from "src/components/DifficultySelector";
+import Footer from "src/components/Footer";
+import TypewriterText from "src/components/TypeWriterText";
 
 export default function Home() {
   const [difficulty, setDifficulty] = useState<DifficultyLevel>("normal");
   const [isStarting, setIsStarting] = useState(false);
+  const [pageLoaded, setPageLoaded] = useState(false);
 
   const router = useRouter();
 
@@ -21,12 +24,34 @@ export default function Home() {
     }, 500);
   }
 
+  useEffect(() => {
+    const fontPromise = document.fonts.ready;
+
+    Promise.all([
+      fontPromise,
+
+      new Promise((resolve) => setTimeout(resolve, 500)),
+    ]).then(() => {
+      setPageLoaded(true);
+    });
+  }, []);
+
+  if (!pageLoaded) {
+    return (
+      <div className="h-screen w-full flex items-center justify-center">
+        <LoadingSpinner text="Loading..." />
+      </div>
+    );
+  }
+
   return (
-    <main className="flex min-h-screen flex-col items-center text-gray-100 text-center">
-      <h1 className="text-4xl font-bold mb-4 text-fuchsia-400">
-        Types Battles
-      </h1>
-      <p className="text-lg text-gray-300 mb-4">Prove yourself, youngling.</p>
+    <main className="flex flex-col items-center text-gray-100 text-center">
+      <div className="flex items-center justify-center p-4 mb-4">
+        <TypewriterText text="Type-Battle" className="font-bold" />
+      </div>
+      <p className="text-lg text-gray-300 mb-4 opacity-40">
+        Prove yourself, youngling.
+      </p>
 
       {!isStarting ? (
         <DifficultySelector
@@ -40,6 +65,8 @@ export default function Home() {
       <button onClick={createGame} disabled={isStarting}>
         {isStarting ? "Starting..." : "Start game"}
       </button>
+
+      <Footer />
     </main>
   );
 }
