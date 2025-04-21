@@ -39,76 +39,7 @@ const LoadingTyping = () => {
     ["  ", " ", "  "],
   ];
 
-  const frases: string[] = [
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "type battle",
-    "click battle",
-  ];
+  const frases: string[] = ["type battle", "click battle"];
   const [fraseActualIndex, setFraseActualIndex] = useState<number>(0);
   const [letraActualIndex, setLetraActualIndex] = useState<number>(0);
   const [textoEscrito, setTextoEscrito] = useState<string>("");
@@ -159,7 +90,7 @@ const LoadingTyping = () => {
     } else {
       // Fin de la frase actual
       fraseTimeout.current = setTimeout(() => {
-        setFraseActualIndex(() => Math.floor(Math.random() * frases.length));
+        setFraseActualIndex(() => (Math.random() < 0.88 ? 0 : 1));
         setLetraActualIndex(0);
         setTextoEscrito("");
         // Reiniciar la animación para la siguiente frase
