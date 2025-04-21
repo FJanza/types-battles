@@ -8,11 +8,24 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        brand: {
+          blue: {
+            300: "#40a8be",
+          },
+          red: {
+            300: "#f2444f",
+          },
+        },
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "palette-gradient":
+          "linear-gradient(-45deg, #f2444f, #40a8be, #f2444f, #40a8be)",
       },
+      backgroundSize: {"palette-size": "200% 200%"},
       keyframes: {
         glitch: {
           "0%": {"clip-path": "inset(20% 0 50% 0)"},

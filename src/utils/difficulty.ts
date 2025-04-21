@@ -1,11 +1,11 @@
 export const DIFFICULTY_SETTINGS = {
-  easy: {
-    timeGame: 60,
-    wordsQuantity: 10,
-    label: "Easy",
-    description: "More time, less words",
-    wordMinLength: 2,
-    wordMaxLength: 5,
+  custom: {
+    timeGame: 45,
+    wordsQuantity: 20,
+    label: "Custom",
+    description: "Create your own challenge",
+    wordMinLength: 3,
+    wordMaxLength: 10,
   },
   normal: {
     timeGame: 30,

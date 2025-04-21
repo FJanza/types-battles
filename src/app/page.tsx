@@ -62,7 +62,11 @@ export default function Home() {
         <LoadingSpinner text="Preparing the battlefield..." />
       )}
 
-      <button onClick={createGame} disabled={isStarting}>
+      <button
+        onClick={createGame}
+        disabled={isStarting}
+        className="w-1/2  text-white font-bold py-2 px-4 rounded border-2 border-white hover:opacity-50 transition-opacity duration-300"
+      >
         {isStarting ? "Starting..." : "Start game"}
       </button>
 

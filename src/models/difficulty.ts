@@ -7,4 +7,4 @@ export interface Difficulty {
   wordMaxLength: number;
 }
 
-export type DifficultyLevel = "easy" | "normal" | "hard" | "master";
+export type DifficultyLevel = "custom" | "normal" | "hard" | "master";
