@@ -110,7 +110,7 @@ export default function CustomDifficultyEditor({
                 label="Max Word Length"
                 value={settings.wordMaxLength}
                 min={settings.wordMinLength + 1}
-                max={20}
+                max={14}
                 unit="letters"
                 onChange={(value) => handleChange("wordMaxLength", value)}
                 accentColor="accent-brand-red-300"
