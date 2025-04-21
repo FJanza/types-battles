@@ -37,8 +37,26 @@ const config: Config = {
           "95%": {"clip-path": "inset(25% 0 35% 0)"},
           "100%": {"clip-path": "inset(30% 0 40% 0)"},
         },
+        presionarTecla: {
+          "0%": {
+            transform: "translateY(0)",
+            boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.1)",
+            backgroundColor: "#eee",
+          },
+          "50%": {
+            transform: "translateY(2px)",
+            boxShadow: "1px 1px 2px rgba(0, 0, 0, 0.1)",
+            backgroundColor: "#ddd",
+          },
+          "100%": {
+            transform: "translateY(0)",
+            boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.1)",
+            backgroundColor: "#eee",
+          },
+        },
       },
       animation: {
+        presionarTecla: "presionarTecla 0.3s ease-in-out",
         "glitch-after":
           "glitch var(--after-duration) infinite linear alternate-reverse",
         "glitch-before":
