@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Space_Mono({weight: "400", subsets: ["latin"]});
 
 export const metadata: Metadata = {
-  title: "TypesBattles",
+  title: "Type Battle",
   description: "Game of fast typing",
   keywords: [
     "touch a key,press a key",
