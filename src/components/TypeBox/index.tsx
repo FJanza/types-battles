@@ -6,6 +6,7 @@ import React, {useEffect, useRef, useState} from "react";
 import {WORDS_BY_LENGTH} from "src/utils/constants";
 import {DIFFICULTY_SETTINGS} from "src/utils/difficulty";
 import {GameOverData} from "src/models/gameOverData";
+import {calculateScore} from "src/utils/score";
 
 import {TypeBoxProps} from "./types";
 
@@ -220,24 +221,18 @@ const TypeBox = ({
     const totalAvailableLetters =
       $paragraph.current!.querySelectorAll("tb-letter").length;
 
-    const completionRate =
-      totalAvailableLetters > 0
-        ? (correctLetter / totalAvailableLetters) * 100
-        : 0;
+    let timeLeft = currentTime === gameTime ? 0 : currentTime;
 
-    const totalLetters = correctLetter + incorrectLetter;
-
-    // TODO Creo yo que se deberia contar tambien los errores que luego se corrigen
-    const accuracy =
-      totalLetters > 0 ? (correctLetter / totalLetters) * 100 : 0;
-
-    const wpm = (correctWords * 60) / gameTime;
-
-    setGameOverData({
-      wpm,
-      accuracy: accuracy.toFixed(2),
-      completionRate: completionRate.toFixed(2),
+    const gameOverData = calculateScore({
+      correctWords,
+      correctLetter,
+      incorrectLetter,
+      totalAvailableLetters,
+      gameTime,
+      spareTime: timeLeft,
     });
+
+    setGameOverData(gameOverData);
     setGameOverState(true);
   }
 
@@ -258,12 +253,28 @@ const TypeBox = ({
       </section>
 
       <section className={!gameOverState ? "hidden" : "flex"}>
-        <h2>WPM</h2>
-        <h3>{gameOverData?.wpm}</h3>
-        <h2>Accuracy</h2>
-        <h3>{gameOverData?.accuracy}%</h3>
-        <h2>Completion Rate</h2>
-        <h3>{gameOverData?.completionRate}%</h3>
+        <div className="flex flex-col items-center mb-2">
+          <h1 className="text-xl mn-2">Score</h1>
+          <h3 className="text-3xl">{gameOverData?.totalScore.toFixed(0)}</h3>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div>
+            <h2 className="opacity-40">Accuracy</h2>
+            <h3>{gameOverData?.accuracy}%</h3>
+          </div>
+          <div>
+            <h2 className="opacity-40">WPM</h2>
+            <h3>{gameOverData?.wpm}</h3>
+          </div>
+          <div>
+            <h2 className="opacity-40">Completion Rate</h2>
+            <h3>{gameOverData?.completionRate}%</h3>
+          </div>
+          <div>
+            <h2 className="opacity-40">Spare time</h2>
+            <h3>{gameOverData?.spareTime} seconds</h3>
+          </div>
+        </div>
         <button
           onClick={() => {
             initGame();
