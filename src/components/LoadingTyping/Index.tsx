@@ -24,7 +24,7 @@ const EnterTecla = () => {
     <button
       data-key="ENTER"
       className="pointer-events-none absolute bg-gray-200 border border-gray-300 text-gray-700 rounded shadow cursor-pointer transition-transform duration-100 ease-in-out w-20 h-[142px] flex items-center justify-center"
-      style={{bottom: "154px", right: "-2px"}} // Ajusta la posición según sea necesario porque esta absolutizada
+      style={{bottom: "154px", right: "-2px"}}
     >
       ENTER
     </button>
@@ -47,8 +47,8 @@ const LoadingTyping = () => {
   const intervaloEntreFrases: number = 1000;
   const animationTimeout = useRef<NodeJS.Timeout | null>(null);
   const fraseTimeout = useRef<NodeJS.Timeout | null>(null);
-  const initialTimeoutRef = useRef<NodeJS.Timeout | null>(null); // Ref para el timeout inicial
-  const tecladoContainerRef = useRef<HTMLDivElement | null>(null); // Referencia al contenedor del teclado
+  const initialTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const tecladoContainerRef = useRef<HTMLDivElement | null>(null);
 
   const animarTecla = (key: string): void => {
     const teclaElement = document.querySelector<HTMLButtonElement>(
@@ -88,7 +88,6 @@ const LoadingTyping = () => {
       setLetraActualIndex((prevIndex) => prevIndex + 1);
       animationTimeout.current = setTimeout(teclearFrase, intervaloEntreLetras);
     } else {
-      // Fin de la frase actual
       fraseTimeout.current = setTimeout(() => {
         setFraseActualIndex(() => (Math.random() < 0.88 ? 0 : 1));
         setLetraActualIndex(0);
@@ -123,7 +122,7 @@ const LoadingTyping = () => {
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [frases]); // Depender de 'frases' asegura que se reinicie si las frases cambian
+  }, [frases]);
 
   return (
     <div
