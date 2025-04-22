@@ -24,11 +24,11 @@ export const DIFFICULTY_SETTINGS = {
     wordMaxLength: 12,
   },
   master: {
-    timeGame: 20,
+    timeGame: 25,
     wordsQuantity: 30,
     label: "Master",
     description: "Prove yourself to the typing gods",
-    wordMinLength: 7,
+    wordMinLength: 5,
     wordMaxLength: 14,
   },
 };

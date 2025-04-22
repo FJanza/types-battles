@@ -11,10 +11,11 @@ export default function DifficultySelector({
   setDifficulty,
 }: DifficultySelectorProps) {
   const [customSettings, setCustomSettings] = useState<Difficulty>({
-    ...DIFFICULTY_SETTINGS.normal,
+    ...DIFFICULTY_SETTINGS.custom,
   });
 
   const [showCustomEditor, setShowCustomEditor] = useState(false);
+  const [customSettingsSelected, setCustomSettingsSelected] = useState(false);
 
   const handleDifficultyClick = (level: DifficultyLevel) => {
     setDifficulty(level);
@@ -27,6 +28,7 @@ export default function DifficultySelector({
 
   const handleSaveCustom = () => {
     DIFFICULTY_SETTINGS.custom = customSettings;
+    setCustomSettingsSelected(true);
     setShowCustomEditor(false);
   };
 
@@ -62,7 +64,7 @@ export default function DifficultySelector({
               </div>
 
               <div className="text-xs mt-2 text-gray-400">
-                {value.label !== "Custom"
+                {value.label !== "Custom" || customSettingsSelected
                   ? `${value.timeGame}s / ${value.wordsQuantity} words`
                   : "Choose settings"}
               </div>
