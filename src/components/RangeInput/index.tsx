@@ -30,10 +30,12 @@ export default function RangeInput({
   trackColor = "bg-gray-600",
 }: RangeInputProps) {
   return (
-    <div className="bg-gray-700 p-3">
+    <div className="bg-gray-700 p-3 rounded">
       <div className="flex justify-between items-center mb-2">
-        <label className="text-gray-200 font-medium">{label}</label>
-        <span className="bg-gray-600 px-2 py-1 rounded text-white text-sm">
+        <label className="text-gray-200 font-medium text-xs lg:text-base">
+          {label}
+        </label>
+        <span className="bg-brand-blue-300 px-2 py-1 rounded text-white text-xs lg:text-sm w-24 lg:w-28">
           {value} {unit}
         </span>
       </div>

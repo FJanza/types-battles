@@ -62,11 +62,11 @@ export default function CustomDifficultyEditor({
       <div className="fixed inset-0 flex items-center justify-center z-50 p-4 ">
         <div className="flex p-2 gradient-border-container">
           <div
-            className="bg-gray-800 p-6 rounded-md max-w-md w-full shadow-lg"
+            className="bg-gray-800 p-6 rounded-md max-w-md  shadow-lg"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-center mb-4">
-              <h3 className="font-bold text-xl text-white">
+              <h3 className="font-bold text-base lg:text-xl text-white">
                 Customize Your Challenge
               </h3>
               <button
@@ -80,12 +80,12 @@ export default function CustomDifficultyEditor({
               <RangeInput
                 label="Game Time"
                 value={settings.timeGame}
-                min={10}
-                max={120}
+                min={5}
+                max={180}
                 step={5}
                 unit="seconds"
                 onChange={(value) => handleChange("timeGame", value)}
-                accentColor="accent-brand-blue-300"
+                accentColor="accent-brand-red-300"
               />
               <RangeInput
                 label="Number of Words"
@@ -104,7 +104,7 @@ export default function CustomDifficultyEditor({
                 max={settings.wordMaxLength - 1}
                 unit="letters"
                 onChange={(value) => handleChange("wordMinLength", value)}
-                accentColor="accent-brand-blue-300"
+                accentColor="accent-brand-red-300"
               />
               <RangeInput
                 label="Max Word Length"
