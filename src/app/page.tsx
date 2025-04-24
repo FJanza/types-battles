@@ -46,10 +46,10 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center text-gray-100 text-center">
-      <div className="flex items-center justify-center p-4 mb-4">
+      <div className="flex items-center justify-center ">
         <TypewriterText text="Type-Battle" className="font-bold" />
       </div>
-      <p className="text-lg text-gray-300 mb-4 opacity-40">
+      <p className="text-sm lg:text-lg text-gray-300 mb-1 lg:mb-4 opacity-40">
         Prove yourself, youngling.
       </p>
 
@@ -62,7 +62,11 @@ export default function Home() {
         <LoadingSpinner text="Preparing the battlefield..." />
       )}
 
-      <button onClick={createGame} disabled={isStarting}>
+      <button
+        onClick={createGame}
+        disabled={isStarting}
+        className="w-40 lg:w-48 text-white font-bold py-2 px-4 mt-4 rounded border-2 border-white hover:opacity-50 transition-opacity duration-300"
+      >
         {isStarting ? "Starting..." : "Start game"}
       </button>
 

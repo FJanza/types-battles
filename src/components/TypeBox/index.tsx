@@ -247,7 +247,13 @@ const TypeBox = ({
         {settings.label}
       </div>
       <section className={gameOverState ? "hidden" : "flex"}>
-        <input autoFocus ref={$input} onKeyDown={onKeyDown} onKeyUp={onKeyUp} />
+        <input
+          autoFocus
+          ref={$input}
+          onKeyDown={onKeyDown}
+          onKeyUp={onKeyUp}
+          className="input-ingame"
+        />
         <p ref={$paragraph}></p>
         <time>{currentTime}</time>
       </section>
@@ -264,7 +270,7 @@ const TypeBox = ({
           </div>
           <div>
             <h2 className="opacity-40">WPM</h2>
-            <h3>{gameOverData?.wpm}</h3>
+            <h3>{gameOverData?.wpm.toFixed(2)}</h3>
           </div>
           <div>
             <h2 className="opacity-40">Completion Rate</h2>
@@ -275,20 +281,24 @@ const TypeBox = ({
             <h3>{gameOverData?.spareTime} seconds</h3>
           </div>
         </div>
-        <button
-          onClick={() => {
-            initGame();
-          }}
-        >
-          Retry
-        </button>
-        <button
-          onClick={() => {
-            router.push("/");
-          }}
-        >
-          Go Home
-        </button>
+        <div className="flex flex-row gap-4 justify-center">
+          <button
+            onClick={() => {
+              initGame();
+            }}
+            className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition duration-200"
+          >
+            Retry
+          </button>
+          <button
+            onClick={() => {
+              router.push("/");
+            }}
+            className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition duration-200"
+          >
+            Go Home
+          </button>
+        </div>
       </section>
     </div>
   );
