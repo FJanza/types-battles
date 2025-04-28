@@ -1,5 +1,6 @@
 import type {Metadata} from "next";
 import {Space_Mono} from "next/font/google";
+
 import "./globals.css";
 
 const inter = Space_Mono({weight: "400", subsets: ["latin"]});

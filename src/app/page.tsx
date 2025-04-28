@@ -3,10 +3,14 @@ import React, {useState, useEffect} from "react";
 import {useRouter} from "next/navigation";
 
 import {DifficultyLevel} from "src/models/difficulty";
-import LoadingSpinner from "src/components/LoadingSpinner";
-import DifficultySelector from "src/components/DifficultySelector";
 import Footer from "src/components/Footer";
+import LoadingSpinner from "src/components/LoadingSpinner";
 import TypewriterText from "src/components/TypeWriterText";
+import DifficultySelector from "src/components/DifficultySelector";
+import LanguageButton from "src/components/LanguageButton";
+
+import "./i18n";
+import {Icon} from "lucide-react";
 
 export default function Home() {
   const [difficulty, setDifficulty] = useState<DifficultyLevel>("normal");
@@ -52,6 +56,8 @@ export default function Home() {
       <p className="text-sm lg:text-lg text-gray-300 mb-1 lg:mb-4 opacity-40">
         Prove yourself, youngling.
       </p>
+
+      <LanguageButton />
 
       {!isStarting ? (
         <DifficultySelector
