@@ -3,6 +3,8 @@ import {Space_Mono} from "next/font/google";
 
 import "./globals.css";
 
+import LanguageInitializer from "src/components/LanguageInitializer";
+
 const inter = Space_Mono({weight: "400", subsets: ["latin"]});
 
 export const metadata: Metadata = {
@@ -34,6 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <LanguageInitializer />
       <body className={inter.className}>{children}</body>
     </html>
   );

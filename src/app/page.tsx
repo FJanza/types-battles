@@ -1,16 +1,16 @@
 "use client";
 import React, {useState, useEffect} from "react";
+import {useTranslation} from "react-i18next";
 import {useRouter} from "next/navigation";
 
 import {DifficultyLevel} from "src/models/difficulty";
 import Footer from "src/components/Footer";
 import LoadingSpinner from "src/components/LoadingSpinner";
 import TypewriterText from "src/components/TypeWriterText";
-import DifficultySelector from "src/components/DifficultySelector";
 import LanguageButton from "src/components/LanguageButton";
+import DifficultySelector from "src/components/DifficultySelector";
 
 import "./i18n";
-import {Icon} from "lucide-react";
 
 export default function Home() {
   const [difficulty, setDifficulty] = useState<DifficultyLevel>("normal");
@@ -18,6 +18,8 @@ export default function Home() {
   const [pageLoaded, setPageLoaded] = useState(false);
 
   const router = useRouter();
+
+  const {t} = useTranslation();
 
   function createGame() {
     setIsStarting(true);
@@ -54,7 +56,7 @@ export default function Home() {
         <TypewriterText text="Type-Battle" className="font-bold" />
       </div>
       <p className="text-sm lg:text-lg text-gray-300 mb-1 lg:mb-4 opacity-40">
-        Prove yourself, youngling.
+        {t("messages.proveYourself")}
       </p>
 
       <LanguageButton />
@@ -65,7 +67,7 @@ export default function Home() {
           setDifficulty={setDifficulty}
         />
       ) : (
-        <LoadingSpinner text="Preparing the battlefield..." />
+        <LoadingSpinner text={t("messages.preparing")} />
       )}
 
       <button
@@ -73,7 +75,7 @@ export default function Home() {
         disabled={isStarting}
         className="w-40 lg:w-48 text-white font-bold py-2 px-4 mt-4 rounded border-2 border-white hover:opacity-50 transition-opacity duration-300"
       >
-        {isStarting ? "Starting..." : "Start game"}
+        {isStarting ? t("button.starting") : t("button.startGame")}
       </button>
 
       <Footer />

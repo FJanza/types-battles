@@ -1,1 +1,47 @@
-{"translation": {"language": {"es": "Spanish", "en": "English"}}}
+{
+  "translation": {
+    "language": {"es": "Spanish", "en": "English"},
+    "difficulty": {
+      "custom": {
+        "name": "Custom",
+        "description": "Create your own challenge",
+        "setting": {
+          "customizeChallenge": "Customize your challenge",
+          "gameTime": "Game time",
+          "numberOfWords": "Number of words",
+          "minLength": "Min length",
+          "maxLength": "Max length"
+        }
+      },
+      "normal": {"name": "Normal", "description": "Default experience"},
+      "hard": {"name": "Hard", "description": "Less time, more words"},
+      "master": {
+        "name": "Master",
+        "description": "Prove yourself to the typing gods"
+      },
+      "title": "Choose difficulty"
+    },
+    "common": {
+      "words": "Words",
+      "letters": "Letters",
+      "seconds": "Seconds",
+      "score": "Score",
+      "accuracy": "Accuracy",
+      "wpm": "WPM",
+      "spareTime": "Spare time",
+      "completionRate": "Completion Rate"
+    },
+    "messages": {
+      "proveYourself": "Prove yourself, youngling.",
+      "preparing": "Preparing the battlefield..."
+    },
+    "button": {
+      "startGame": "Start game",
+      "starting": "Starting...",
+      "apply": "Apply",
+      "cancel": "Cancel",
+      "retry": "Retry",
+      "goHome": "Go home"
+    }
+  }
+}

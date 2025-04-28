@@ -2,6 +2,7 @@
 "use client";
 import {useRouter} from "next/navigation";
 import React, {useEffect, useRef, useState} from "react";
+import {useTranslation} from "react-i18next";
 
 import {WORDS_BY_LENGTH} from "src/utils/constants";
 import {DIFFICULTY_SETTINGS} from "src/utils/difficulty";
@@ -27,6 +28,8 @@ const TypeBox = ({
   const [gameOverState, setGameOverState] = useState(false);
   const [gameOverData, setGameOverData] = useState<GameOverData>();
   const [playing, setPlaying] = useState(false);
+
+  const {t} = useTranslation();
 
   const router = useRouter();
 
@@ -243,9 +246,9 @@ const TypeBox = ({
 
   return (
     <div className="flex flex-col items-center justify-between">
-      <div className="difficulty-badge mb-4 px-3 py-1 bg-fuchsia-100 text-fuchsia-800 rounded-full">
-        {settings.label}
-      </div>
+      <h5 className="difficulty-badge mb-4 px-3 py-1 bg-fuchsia-100 text-fuchsia-800 rounded-full">
+        {t("difficulty." + settings.label + ".name").toLocaleUpperCase()}
+      </h5>
       <section className={gameOverState ? "hidden" : "flex"}>
         <input
           autoFocus
@@ -260,25 +263,27 @@ const TypeBox = ({
 
       <section className={!gameOverState ? "hidden" : "flex"}>
         <div className="flex flex-col items-center mb-2">
-          <h1 className="text-xl mn-2">Score</h1>
+          <h1 className="text-xl mn-2">{t("common.score")}</h1>
           <h3 className="text-3xl">{gameOverData?.totalScore.toFixed(0)}</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <div>
-            <h2 className="opacity-40">Accuracy</h2>
+            <h2 className="opacity-40">{t("common.accuracy")}</h2>
             <h3>{gameOverData?.accuracy}%</h3>
           </div>
           <div>
-            <h2 className="opacity-40">WPM</h2>
+            <h2 className="opacity-40">{t("common.wpm")}</h2>
             <h3>{gameOverData?.wpm.toFixed(2)}</h3>
           </div>
           <div>
-            <h2 className="opacity-40">Completion Rate</h2>
+            <h2 className="opacity-40">{t("common.completionRate")}</h2>
             <h3>{gameOverData?.completionRate}%</h3>
           </div>
           <div>
-            <h2 className="opacity-40">Spare time</h2>
-            <h3>{gameOverData?.spareTime} seconds</h3>
+            <h2 className="opacity-40">{t("common.spareTime")}</h2>
+            <h3>
+              {gameOverData?.spareTime} {t("common.seconds")}
+            </h3>
           </div>
         </div>
         <div className="flex flex-row gap-4 justify-center">
@@ -288,7 +293,7 @@ const TypeBox = ({
             }}
             className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition duration-200"
           >
-            Retry
+            {t("button.retry")}
           </button>
           <button
             onClick={() => {
@@ -296,7 +301,7 @@ const TypeBox = ({
             }}
             className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition duration-200"
           >
-            Go Home
+            {t("button.goHome")}
           </button>
         </div>
       </section>

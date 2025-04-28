@@ -2,7 +2,6 @@ export interface Difficulty {
   timeGame: number;
   wordsQuantity: number;
   label: string;
-  description: string;
   wordMinLength: number;
   wordMaxLength: number;
 }
