@@ -1,0 +1,52 @@
+{
+  "translation": {
+    "language": {
+      "es": "Español",
+      "en": "Inglés"
+    },
+    "difficulty": {
+      "custom": {
+        "name": "Personalizado",
+        "description": "Crea tu propio desafío",
+        "setting": {
+          "customizeChallenge": "Personaliza tu desafío",
+          "gameTime": "Tiempo de juego",
+          "numberOfWords": "Cantidad de palabras",
+          "minLength": "Largo mínimo",
+          "maxLength": "Largo máximo"
+        }
+      },
+      "normal": {"name": "Normal", "description": "Experiencia predeterminada"},
+      "hard": {"name": "Dificil", "description": "Menos tiempo, más palabras"},
+      "master": {
+        "name": "Maestro",
+        "description": "Demostra tu valor ante los dioses del teclado"
+      },
+      "chooseSettings": "Selecciona la configuración",
+      "title": " Selecciona la dificultad"
+    },
+    "common": {
+      "words": "Palabras",
+      "letters": "Letras",
+      "seconds": "Segundos",
+      "score": "Puntaje",
+      "accuracy": "Precisión",
+      "wpm": "PPM",
+      "spareTime": "Tiempo de sobra",
+      "completionRate": "Tasa de completado"
+    },
+
+    "messages": {
+      "proveYourself": "Demuestra tu valor, joven.",
+      "preparing": "Preparando el campo de batalla..."
+    },
+    "button": {
+      "startGame": "Iniciar juego",
+      "starting": "Iniciando...",
+      "apply": "Aplicar",
+      "cancel": "Cancelar",
+      "retry": "Reintentar",
+      "goHome": "Volver al inicio"
+    }
+  }
+}

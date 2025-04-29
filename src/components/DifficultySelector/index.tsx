@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {useTranslation} from "react-i18next";
 
 import {Difficulty, DifficultyLevel} from "src/models/difficulty";
 import {DIFFICULTY_SETTINGS} from "src/utils/difficulty";
@@ -13,6 +14,8 @@ export default function DifficultySelector({
   const [customSettings, setCustomSettings] = useState<Difficulty>({
     ...DIFFICULTY_SETTINGS.custom,
   });
+
+  const {t} = useTranslation();
 
   const [showCustomEditor, setShowCustomEditor] = useState(false);
   const [customSettingsSelected, setCustomSettingsSelected] = useState(false);
@@ -39,7 +42,7 @@ export default function DifficultySelector({
   return (
     <div className="w-full max-w-md p-6 transition-all duration-300">
       <h2 className="text-base lg:text-xl font-semibold mb-4 text-gray-200 opacity-40">
-        Choose Difficulty
+        {t("difficulty.title")}
       </h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {Object.entries(DIFFICULTY_SETTINGS).map(([key, value]) => (
@@ -60,17 +63,19 @@ export default function DifficultySelector({
             >
               <div className="justify-center flex flex-col items-center">
                 <h3 className="font-bold text-white text-sm lg:text-base">
-                  {value.label}
+                  {t("difficulty." + value.label + ".name")}
                 </h3>
                 <p className="text-xs lg:text-sm text-gray-300">
-                  {value.description}
+                  {t("difficulty." + value.label + ".description")}
                 </p>
               </div>
 
               <div className="text-xs mt-2 text-gray-400">
                 {value.label !== "Custom" || customSettingsSelected
-                  ? `${value.timeGame}s / ${value.wordsQuantity} words`
-                  : "Choose settings"}
+                  ? `${value.timeGame}s / ${value.wordsQuantity} ${t(
+                      "common.words"
+                    )}`
+                  : t("difficulty.chooseSettings")}
               </div>
             </div>
           </div>

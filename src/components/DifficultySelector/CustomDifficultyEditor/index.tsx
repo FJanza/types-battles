@@ -1,4 +1,5 @@
 import React, {useEffect} from "react";
+import {useTranslation} from "react-i18next";
 import {X} from "lucide-react";
 
 import {Difficulty} from "src/models/difficulty";
@@ -32,6 +33,8 @@ export default function CustomDifficultyEditor({
       [field]: value,
     });
   };
+
+  const {t} = useTranslation();
 
   const handleSave = () => {
     onSave();
@@ -67,7 +70,7 @@ export default function CustomDifficultyEditor({
           >
             <div className="flex justify-between items-center mb-4">
               <h3 className="font-bold text-base lg:text-xl text-white">
-                Customize Your Challenge
+                {t("difficulty.custom.setting.customizeChallenge")}
               </h3>
               <button
                 onClick={onClose}
@@ -78,40 +81,43 @@ export default function CustomDifficultyEditor({
             </div>
             <div className="grid grid-cols-1 gap-5 mb-6">
               <RangeInput
-                label="Game Time"
+                label={t("difficulty.custom.setting.gameTime")}
                 value={settings.timeGame}
                 min={5}
                 max={180}
                 step={5}
-                unit="seconds"
+                unit={t("common.seconds")}
                 onChange={(value) => handleChange("timeGame", value)}
                 accentColor="accent-brand-red-300"
               />
               <RangeInput
-                label="Number of Words"
+                label={t("difficulty.custom.setting.numberOfWords")}
                 value={settings.wordsQuantity}
                 min={5}
                 max={50}
                 step={5}
-                unit="words"
+                unit={t("common.words")}
                 onChange={(value) => handleChange("wordsQuantity", value)}
                 accentColor="accent-brand-red-300"
               />
+              <h3 className="font-bold text-base lg:text-xl text-white text-start">
+                {t("difficulty.words")}
+              </h3>
               <RangeInput
-                label="Min Word Length"
+                label={t("difficulty.custom.setting.minLength")}
                 value={settings.wordMinLength}
                 min={2}
                 max={settings.wordMaxLength - 1}
-                unit="letters"
+                unit={t("common.letters")}
                 onChange={(value) => handleChange("wordMinLength", value)}
                 accentColor="accent-brand-red-300"
               />
               <RangeInput
-                label="Max Word Length"
+                label={t("difficulty.custom.setting.maxLength")}
                 value={settings.wordMaxLength}
                 min={settings.wordMinLength + 1}
                 max={14}
-                unit="letters"
+                unit={t("common.letters")}
                 onChange={(value) => handleChange("wordMaxLength", value)}
                 accentColor="accent-brand-red-300"
               />
@@ -121,13 +127,13 @@ export default function CustomDifficultyEditor({
                 onClick={onClose}
                 className="w-1/2 text-white bg-gray-600 font-bold py-2 px-4 rounded border-2 border-white hover:opacity-90 transition-opacity"
               >
-                Cancel
+                {t("button.cancel")}
               </button>
               <button
                 onClick={handleSave}
                 className="w-1/2  text-white font-bold py-2 px-4 rounded border-2 border-white hover:opacity-50 transition-opacity duration-300"
               >
-                Apply
+                {t("button.apply")}
               </button>
             </div>
           </div>
