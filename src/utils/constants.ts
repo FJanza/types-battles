@@ -1315,4 +1315,4 @@ export const WORDS_BY_LENGTH: {[key: number]: string[]} = {
   ],
 };
 
-export const LANGUAGUE_LIST = ["es", "en"];
+export const LANGUAGE_LIST = ["es", "en"];

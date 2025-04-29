@@ -2,7 +2,7 @@
 import {useEffect, useState, useRef} from "react";
 import {useTranslation} from "react-i18next";
 
-import {LANGUAGUE_LIST} from "src/utils/constants";
+import {LANGUAGE_LIST} from "src/utils/constants";
 
 import FlagCircle from "./FlagCircle";
 
@@ -71,7 +71,7 @@ export default function LanguageButton() {
           className="absolute left-0 mt-2 w-full bg-white border rounded shadow z-10 text-black"
           role="listbox"
         >
-          {LANGUAGUE_LIST.map((lang) => (
+          {LANGUAGE_LIST.map((lang) => (
             <li
               key={lang}
               className={`px-4 py-2 cursor-pointer hover:bg-gray-100 ${
