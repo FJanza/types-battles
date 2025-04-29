@@ -15,16 +15,19 @@ export default function FlagCircle({
       alt={alt}
       width={size}
       height={size}
+      className={`
+        rounded-full
+        object-cover
+        inline-block
+        border
+        border-[#eee]
+        bg-white
+        ${className}
+      `}
       style={{
-        borderRadius: "50%",
-        objectFit: "cover",
         width: size,
         height: size,
-        display: "inline-block",
-        border: "1px solid #eee",
-        background: "#fff",
       }}
-      className={className}
     />
   );
 }
