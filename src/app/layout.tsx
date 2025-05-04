@@ -3,7 +3,8 @@ import {Space_Mono} from "next/font/google";
 
 import "./globals.css";
 
-import LanguageInitializer from "src/components/LanguageInitializer";
+import {detectLanguage} from "src/i18n/server";
+import {I18nProvider} from "src/i18n/i18n-context";
 
 const inter = Space_Mono({weight: "400", subsets: ["latin"]});
 
@@ -29,15 +30,18 @@ export const metadata: Metadata = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const lng = await detectLanguage();
+
   return (
-    <html lang="en">
-      <LanguageInitializer />
-      <body className={inter.className}>{children}</body>
+    <html lang={lng}>
+      <body className={inter.className}>
+        <I18nProvider language={lng}>{children}</I18nProvider>
+      </body>
     </html>
   );
 }

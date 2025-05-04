@@ -101,7 +101,7 @@ export default function CustomDifficultyEditor({
                 accentColor="accent-brand-red-300"
               />
               <h3 className="font-bold text-base lg:text-xl text-white text-start">
-                {t("difficulty.words")}
+                {t("common.words")}
               </h3>
               <RangeInput
                 label={t("difficulty.custom.setting.minLength")}

@@ -1314,5 +1314,3 @@ export const WORDS_BY_LENGTH: {[key: number]: string[]} = {
     "reconstructive",
   ],
 };
-
-export const LANGUAGE_LIST = ["es", "en"];

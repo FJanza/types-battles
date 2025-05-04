@@ -1,8 +1,7 @@
 "use client";
 import {useEffect, useState, useRef} from "react";
 import {useTranslation} from "react-i18next";
-
-import {LANGUAGE_LIST} from "src/utils/constants";
+import {LANGUAGE_LIST} from "src/i18n/settings";
 
 import FlagCircle from "./FlagCircle";
 
@@ -11,14 +10,14 @@ export default function LanguageButton() {
   const [currentLanguage, setCurrentLanguage] = useState(i18n.language);
   const [open, setOpen] = useState(false);
   const pickerRef = useRef<HTMLDivElement>(null);
+  const savedLanguage = localStorage.getItem("language");
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("language");
     if (savedLanguage && savedLanguage !== i18n.language) {
       i18n.changeLanguage(savedLanguage);
       setCurrentLanguage(savedLanguage);
     }
-  }, [i18n]);
+  }, [i18n, savedLanguage]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {

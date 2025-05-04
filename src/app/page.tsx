@@ -10,8 +10,6 @@ import TypewriterText from "src/components/TypeWriterText";
 import LanguageButton from "src/components/LanguageButton";
 import DifficultySelector from "src/components/DifficultySelector";
 
-import "./i18n";
-
 export default function Home() {
   const [difficulty, setDifficulty] = useState<DifficultyLevel>("normal");
   const [isStarting, setIsStarting] = useState(false);
