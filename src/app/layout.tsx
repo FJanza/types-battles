@@ -5,6 +5,7 @@ import "./globals.css";
 
 import {detectLanguage} from "src/i18n/server";
 import {I18nProvider} from "src/i18n/i18n-context";
+import {GameSettingsProvider} from "src/context/GameSettings";
 
 const inter = Space_Mono({weight: "400", subsets: ["latin"]});
 
@@ -40,7 +41,9 @@ export default async function RootLayout({
   return (
     <html lang={lng}>
       <body className={inter.className}>
-        <I18nProvider language={lng}>{children}</I18nProvider>
+        <GameSettingsProvider>
+          <I18nProvider language={lng}>{children}</I18nProvider>
+        </GameSettingsProvider>
       </body>
     </html>
   );

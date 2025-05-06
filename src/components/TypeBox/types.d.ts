@@ -1,5 +1,8 @@
 export interface TypeBoxProps {
+  difficulty?: DifficultyLevel;
   initialTime?: number;
   wordsQuantity?: number;
-  difficulty?: DifficultyLevel;
+  datasetLanguage?: string;
 }
+
+export type WordsDataset = {[key: string]: string[]};

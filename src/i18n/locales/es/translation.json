@@ -32,7 +32,8 @@
     "accuracy": "Precisión",
     "wpm": "PPM",
     "spareTime": "Tiempo de sobra",
-    "completionRate": "Tasa de completado"
+    "completionRate": "Tasa de completado",
+    "languageDataset": "Idioma de las palabras"
   },
 
   "messages": {

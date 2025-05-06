@@ -28,7 +28,8 @@
     "accuracy": "Accuracy",
     "wpm": "WPM",
     "spareTime": "Spare time",
-    "completionRate": "Completion Rate"
+    "completionRate": "Completion Rate",
+    "languageDataset": "Language dataset"
   },
   "messages": {
     "proveYourself": "Prove yourself, youngling.",

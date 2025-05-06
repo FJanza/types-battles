@@ -4,17 +4,19 @@ import {useRouter} from "next/navigation";
 import React, {useEffect, useRef, useState} from "react";
 import {useTranslation} from "react-i18next";
 
-import {WORDS_BY_LENGTH} from "src/utils/constants";
-import {DIFFICULTY_SETTINGS} from "src/utils/difficulty";
 import {GameOverData} from "src/models/gameOverData";
+import enDataset from "src/datasets/en.json";
+import esDataset from "src/datasets/es.json";
+import {DIFFICULTY_SETTINGS} from "src/utils/difficulty";
 import {calculateScore} from "src/utils/score";
 
-import {TypeBoxProps} from "./types";
+import {TypeBoxProps, WordsDataset} from "./types";
 
 const TypeBox = ({
   difficulty = "normal",
   initialTime,
   wordsQuantity,
+  datasetLanguage = "en",
 }: TypeBoxProps) => {
   const settings =
     DIFFICULTY_SETTINGS[difficulty as keyof typeof DIFFICULTY_SETTINGS];
@@ -33,7 +35,11 @@ const TypeBox = ({
 
   const router = useRouter();
 
-  let words: any = [];
+  const getDataset = (): WordsDataset => {
+    return datasetLanguage === "es" ? esDataset : enDataset;
+  };
+
+  let words: string[] = [];
 
   function initGame() {
     setGameOverState(false);
@@ -42,20 +48,20 @@ const TypeBox = ({
 
     setPlaying(false);
 
-    const eligibleWords = [];
+    const dataset = getDataset();
+    const eligibleWords: string[] = [];
+
     for (
       let length = settings.wordMinLength;
       length <= settings.wordMaxLength;
       length++
     ) {
-      if (WORDS_BY_LENGTH[length]) {
-        eligibleWords.push(...WORDS_BY_LENGTH[length]);
+      if (dataset[length.toString()]) {
+        eligibleWords.push(...dataset[length.toString()]);
       }
     }
 
-    words = eligibleWords
-      .toSorted(() => Math.random() - 0.5)
-      .slice(0, wordCount);
+    words = eligibleWords.sort(() => Math.random() - 0.5).slice(0, wordCount);
 
     $paragraph.current!.innerHTML = words
       .map((word: string, index: number) => {
