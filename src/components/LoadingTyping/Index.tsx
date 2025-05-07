@@ -1,8 +1,6 @@
 import React, {useState, useEffect, useRef} from "react";
 
-interface TeclaProps {
-  tecla: string;
-}
+import {TeclaProps} from "./types";
 
 const Tecla = ({tecla}: TeclaProps) => {
   return (
@@ -11,7 +9,11 @@ const Tecla = ({tecla}: TeclaProps) => {
       className={`pointer-events-none bg-gray-200 border border-gray-300 text-gray-700 py-2 px-4 rounded shadow cursor-pointer transition-transform duration-100 ease-in-out
         ${tecla === "MAYÚS" ? "w-32" : ""}
         ${tecla === " " ? "w-full" : ""}
-        ${tecla === "  " ? "w-44 bg-transparent shadow-none" : ""}
+        ${
+          tecla === "  "
+            ? "w-44 bg-transparent border-transparent shadow-none"
+            : ""
+        }
       `}
     >
       {tecla}
@@ -23,8 +25,8 @@ const EnterTecla = () => {
   return (
     <button
       data-key="ENTER"
-      className="pointer-events-none absolute bg-gray-200 border border-gray-300 text-gray-700 rounded shadow cursor-pointer transition-transform duration-100 ease-in-out w-20 h-[142px] flex items-center justify-center"
-      style={{bottom: "154px", right: "-2px"}}
+      className="pointer-events-none absolute bg-gray-200 border border-gray-300 text-gray-700 rounded shadow cursor-pointer transition-transform duration-100 ease-in-out w-20 h-[114px] flex items-center justify-center"
+      style={{bottom: "94px", right: "-2px"}}
     >
       ENTER
     </button>
@@ -39,7 +41,7 @@ const LoadingTyping = () => {
     ["  ", " ", "  "],
   ];
 
-  const frases: string[] = ["type battle", "click battle"];
+  const frases: string[] = ["type-battle", "click-battle"];
   const [fraseActualIndex, setFraseActualIndex] = useState<number>(0);
   const [letraActualIndex, setLetraActualIndex] = useState<number>(0);
   const [textoEscrito, setTextoEscrito] = useState<string>("");
@@ -63,16 +65,16 @@ const LoadingTyping = () => {
     setTextoEscrito((prevTexto) => prevTexto + key);
   };
 
-  const animarEnter = (): void => {
-    const enterElement =
-      document.querySelector<HTMLButtonElement>(`[data-key="ENTER"]`);
-    if (enterElement) {
-      enterElement.classList.add("animate-presionarTecla");
-      setTimeout(() => {
-        enterElement.classList.remove("animate-presionarTecla");
-      }, 300);
-    }
-  };
+  // const animarEnter = (): void => {
+  //   const enterElement =
+  //     document.querySelector<HTMLButtonElement>(`[data-key="ENTER"]`);
+  //   if (enterElement) {
+  //     enterElement.classList.add("animate-presionarTecla");
+  //     setTimeout(() => {
+  //       enterElement.classList.remove("animate-presionarTecla");
+  //     }, 300);
+  //   }
+  // };
 
   const teclearFrase = (): void => {
     const fraseActual = frases[fraseActualIndex];
