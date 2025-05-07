@@ -4,7 +4,7 @@ export interface TypeBoxProps {
   difficulty?: DifficultyLevel;
   initialTime?: number;
   wordsQuantity?: number;
-  datasetLanguage?: string;
+  datasetLanguage?: DatasetLanguage;
 }
 
 export type WordsDataset = {[key: string]: string[]};

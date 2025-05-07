@@ -1,9 +1,9 @@
+import {DatasetLanguageKey} from "src/i18n/settings";
 import {DifficultyLevel} from "src/models/difficulty";
-import {DatasetLanguageKey} from "src/utils/difficulty";
 
 export interface GameSettingsContextType {
   difficulty: DifficultyLevel;
   setDifficulty: (difficulty: DifficultyLevel) => void;
-  datasetLanguage: string;
+  datasetLanguage: DatasetLanguageKey;
   setDatasetLanguage: (language: DatasetLanguageKey) => void;
 }

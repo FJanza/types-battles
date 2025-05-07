@@ -4,6 +4,7 @@ import {useRouter} from "next/navigation";
 import React, {useEffect, useRef, useState} from "react";
 import {useTranslation} from "react-i18next";
 
+import {LANGUAGE} from "src/i18n/settings";
 import {GameOverData} from "src/models/gameOverData";
 import enDataset from "src/datasets/en.json";
 import esDataset from "src/datasets/es.json";
@@ -16,7 +17,7 @@ const TypeBox = ({
   difficulty = "normal",
   initialTime,
   wordsQuantity,
-  datasetLanguage = "en",
+  datasetLanguage = LANGUAGE.EN,
 }: TypeBoxProps) => {
   const settings = DIFFICULTY_SETTINGS[difficulty];
   const gameTime = initialTime || settings.timeGame;
@@ -40,7 +41,7 @@ const TypeBox = ({
       en: enDataset,
     };
 
-    return dataSets[datasetLanguage as DatasetLanguage] || enDataset;
+    return dataSets[datasetLanguage] || enDataset;
   };
 
   let words: string[] = [];
