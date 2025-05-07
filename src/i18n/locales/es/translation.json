@@ -33,9 +33,9 @@
     "wpm": "PPM",
     "spareTime": "Tiempo de sobra",
     "completionRate": "Tasa de completado",
-    "languageDataset": "Idioma de las palabras"
+    "languageDataset": "Idioma de las palabras",
+    "loading": "Cargando..."
   },
-
   "messages": {
     "proveYourself": "Demuestra tu valor, joven.",
     "preparing": "Preparando el campo de batalla..."

@@ -6,9 +6,9 @@ import {useRouter} from "next/navigation";
 import Footer from "src/components/Footer";
 import TypewriterText from "src/components/TypeWriterText";
 import LanguageButton from "src/components/LanguageButton";
+import LoadingSpinner from "src/components/LoadingSpinner";
 import DifficultySelector from "src/components/DifficultySelector";
 import DatasetSelector from "src/components/DatasetSelector/index";
-import LoadingTyping from "src/components/LoadingTyping/Index";
 import {useGameSettings} from "src/context/GameSettings";
 
 export default function Home() {
@@ -41,7 +41,7 @@ export default function Home() {
   if (!pageLoaded) {
     return (
       <div className="h-screen w-full flex items-center justify-center">
-        <LoadingTyping />
+        <LoadingSpinner text={t("common.loading")} />
       </div>
     );
   }
@@ -65,7 +65,7 @@ export default function Home() {
           <DatasetSelector />
         </div>
       ) : (
-        <LoadingTyping />
+        <LoadingSpinner text={t("common.loading")} />
       )}
 
       <button
