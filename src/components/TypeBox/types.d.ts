@@ -1,3 +1,5 @@
+import {DifficultyLevel} from "src/models/difficulty";
+
 export interface TypeBoxProps {
   difficulty?: DifficultyLevel;
   initialTime?: number;
@@ -6,3 +8,5 @@ export interface TypeBoxProps {
 }
 
 export type WordsDataset = {[key: string]: string[]};
+
+export type DatasetLanguage = "en" | "es";

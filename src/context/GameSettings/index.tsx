@@ -1,6 +1,12 @@
 "use client";
 import React, {createContext, useContext, useState, ReactNode} from "react";
-import {DifficultyLevel} from "src/models/difficulty";
+
+import {
+  DIFFICULTY,
+  LANGUAGE,
+  DifficultyLevelKey,
+  DatasetLanguageKey,
+} from "src/utils/difficulty";
 
 import {GameSettingsContextType} from "./types";
 
@@ -24,8 +30,12 @@ const GameSettingsContext = createContext<GameSettingsContextType | undefined>(
  * @param {ReactNode} children - Child components that will have access to the context
  */
 export const GameSettingsProvider = ({children}: {children: ReactNode}) => {
-  const [difficulty, setDifficulty] = useState<DifficultyLevel>("normal");
-  const [datasetLanguage, setDatasetLanguage] = useState<string>("en");
+  const [difficulty, setDifficulty] = useState<DifficultyLevelKey>(
+    DIFFICULTY.NORMAL
+  );
+  const [datasetLanguage, setDatasetLanguage] = useState<DatasetLanguageKey>(
+    LANGUAGE.EN
+  );
 
   return (
     <GameSettingsContext.Provider

@@ -10,7 +10,7 @@ import esDataset from "src/datasets/es.json";
 import {DIFFICULTY_SETTINGS} from "src/utils/difficulty";
 import {calculateScore} from "src/utils/score";
 
-import {TypeBoxProps, WordsDataset} from "./types";
+import {DatasetLanguage, TypeBoxProps, WordsDataset} from "./types";
 
 const TypeBox = ({
   difficulty = "normal",
@@ -18,8 +18,7 @@ const TypeBox = ({
   wordsQuantity,
   datasetLanguage = "en",
 }: TypeBoxProps) => {
-  const settings =
-    DIFFICULTY_SETTINGS[difficulty as keyof typeof DIFFICULTY_SETTINGS];
+  const settings = DIFFICULTY_SETTINGS[difficulty];
   const gameTime = initialTime || settings.timeGame;
   const wordCount = wordsQuantity || settings.wordsQuantity;
 
@@ -36,7 +35,12 @@ const TypeBox = ({
   const router = useRouter();
 
   const getDataset = (): WordsDataset => {
-    return datasetLanguage === "es" ? esDataset : enDataset;
+    const dataSets: Record<DatasetLanguage, WordsDataset> = {
+      es: esDataset,
+      en: enDataset,
+    };
+
+    return dataSets[datasetLanguage as DatasetLanguage] || enDataset;
   };
 
   let words: string[] = [];
