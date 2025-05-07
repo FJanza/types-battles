@@ -46,10 +46,3 @@ export const DIFFICULTY_SETTINGS: Record<
     wordMaxLength: 14,
   },
 };
-
-export const LANGUAGE = {
-  EN: "en",
-  ES: "es",
-} as const;
-
-export type DatasetLanguageKey = (typeof LANGUAGE)[keyof typeof LANGUAGE];

@@ -1,14 +1,10 @@
 "use client";
 import React, {createContext, useContext, useState, ReactNode} from "react";
 
-import {
-  DIFFICULTY,
-  LANGUAGE,
-  DifficultyLevelKey,
-  DatasetLanguageKey,
-} from "src/utils/difficulty";
+import {DIFFICULTY, DifficultyLevelKey} from "src/utils/difficulty";
 
 import {GameSettingsContextType} from "./types";
+import {DatasetLanguageKey, LANGUAGE} from "src/i18n/settings";
 
 /**
  * GameSettingsContext - Application-wide context for game configuration settings
